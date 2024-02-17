@@ -38,8 +38,8 @@ void MyCqueue::deleteElement(){
     {
        if(rear == front )
        {
-         rear = -1;
-         front = -1;
+         rear = 0;
+         front = 0;
          
         }
         else
