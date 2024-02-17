@@ -1,3 +1,106 @@
+
+#include <iostream>
+#define MAXSIZE 10
+#define clr System('clr')
+using namespace std;
+class MyCqueue{
+    private:
+        int rear ;
+        int front ;
+        int q[MAXSIZE];
+    public:
+        MyCqueue(){
+              front = -1;
+              rear = -1;
+                  }
+    void  insert();
+    void  deleteElement();
+    void display();
+};
+void MyCqueue::insert(){
+    if((rear+1)%MAXSIZE == front)
+    cout<<" Circular Queue is Overflow "<<endl;
+    else
+    {
+    int n;
+    cout<<"Enter element here : ";
+    cin>>n;
+    rear = (rear+1)%MAXSIZE;
+    q[rear]= n ;
+    
+    }
+    
+}
+void MyCqueue::deleteElement(){
+    if(rear == -1 && front == -1)
+    cout<<" Circular Queue is Empty "<<endl;
+    else
+    {
+       if(rear == front )
+       {
+         rear = -1;
+         front = -1;
+         
+        }
+        else
+        {
+            int n = q[front];
+            front = (front + 1)  % MAXSIZE;
+            cout<<" Element is deleted ";
+        }
+        
+    }
+}
+
+void MyCqueue::display(){
+    if(rear == -1 && front == -1)
+    cout<<" Circular Queue is Empty "<<endl;
+    else
+    {
+       int i ;
+       for(i = front ; i != rear ; i= (i + 1)% MAXSIZE)
+       {
+        cout<<q[i]<<" ";
+       }
+       
+    }
+    cout<<q[rear]<<" ";
+}
+int main()
+{
+    MyCqueue M;
+    int Choice;
+    
+    
+    do{
+    cout<<"\n--------------Circular Queue ------------->";
+    cout<<"\n 1 . INSERT ";
+    cout<<"\n 2 . DELETE ";
+    cout<<"\n 3 . DISPLAY ";
+    cout<<"----------------------------------------";
+        
+            cout << "\n Enter Choice here :  ";
+            cin >> Choice;
+            switch(Choice)
+        {
+            case 1 : M.insert();
+            break;
+            case 2 : M.deleteElement();
+            break;
+            case 3 : M.display();
+            break;
+            case 4 : 
+            break;
+            default: cout<<" Invalid Choice "<<endl;
+            
+        }
+    
+     }   while(Choice!=4);
+      
+        return 0;
+    }
+    // Another way 
+    
 #include <iostream>
 using namespace std;
 
