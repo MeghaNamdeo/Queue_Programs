@@ -185,3 +185,75 @@ int main() {
 
     return 0;
 }
+
+//leetocde solution 
+class MyCircularQueue {
+public:
+    vector<int> cq;
+    int size;
+    int rear;
+    int front;
+
+    MyCircularQueue(int k) {
+        cq.resize(k);
+
+        size = k;
+        rear = -1;
+        front = -1;
+    }
+
+    bool enQueue(int value) {
+
+        if ((rear + 1) % size == front) {
+            return false;
+        } else {
+            if (rear == -1 && front == -1) {
+                rear = 0;
+                front = 0;
+            } else {
+                rear = (rear + 1) % size;
+            }
+            cq[rear] = value;
+            return true;
+        }
+    }
+
+    bool deQueue() {
+        if (rear == -1 && front == -1)
+            return false;
+        else {
+            int n;
+            n = cq[front];
+            if (front == rear) {
+                front = rear = -1;
+            } else {
+                front = (front + 1) % size;
+            }
+            return true;
+        }
+    }
+
+    int Front() {
+        if (front == -1) {
+            return -1;
+        }
+
+        return cq[front];
+    }
+
+    int Rear() {
+        if (rear == -1) {
+            return -1;
+        }
+        return cq[rear];
+    }
+
+    bool isEmpty() { return (rear == -1 && front == -1); }
+
+    bool isFull() { return ((rear + 1) % size == front); }
+};
+
+/*
+TC : O(1)
+SC : O(k)
+ */
